@@ -1,9 +1,3 @@
-// Game board stored as nested arrays
-var gameBoard = [
-  [" ", " ", " "],
-  [" ", " ", " "],
-  [" ", " ", " "]
-];
 
 
 
@@ -24,6 +18,32 @@ var player2 = null;
 var winner = false;
 
 /*-- Done initializing variables --*/
+
+
+
+/**--THE BOARD --*/
+// Game board stored as nested arrays
+var gameBoard = [
+  [" ", " ", " "],
+  [" ", " ", " "],
+  [" ", " ", " "]
+];
+
+// function to print game board that is blank
+var blankBoard = function() {
+  console.log("          1   2   3  ");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("      1 |   |   |   |");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("      2 |   |   |   |");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("      3 |   |   |   |");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("                                         ");
+  console.log("- - - - - - - - - - - - - - - - - - - - - - -");
+  console.log("                                         ");
+};
+
 
 //Player's co-ordinates as an array
 var currentMove = [];
