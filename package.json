@@ -1,0 +1,23 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "CS story problem, command line tictactoe game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbiyMelaku/TicTacToe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbiyMelaku/TicTacToe/issues"
+  },
+  "homepage": "https://github.com/AbiyMelaku/TicTacToe#readme",
+  "dependencies": {
+    "prompt": "^1.0.0",
+    "prompt-sync": "^4.1.4"
+  }
+}
