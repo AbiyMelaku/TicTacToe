@@ -8,15 +8,18 @@ var diagonalWinner = false;
 var rowWinner = false;
 
 //game variables
+var bigCounter = 0;
 var counter = 0;
 //var currentMove = null;
 var goodMove = false;
+var noWinner = false
+var winner = false;
+var repeatPlay = false;
 
 //player variables
 var currentPlayer = null;
 var player1 = null;
 var player2 = null;
-var winner = false;
 var giveUp = false;
 
 /*-- Done initializing variables --*/
@@ -161,7 +164,109 @@ var validMove = function() {
   }
 };
 
+//var playAgain = 
 
 
-//BEGIN GAME
-currentPlayer = player1;
+// Prepare the players for this experience
+console.log("");
+console.log("Let's play Tic-Tac-Toe!!! YEEAAAHAHAHAHA");
+console.log("");
+
+do {
+  console.log("Player 1: Enter your name!");
+  var player1 = prompt();
+
+  console.log("Player 2: Enter your name!");
+  var player2 = prompt();
+
+  if (player1 === player2) {
+    console.log("Please enter different names");
+  }
+
+} while (player1 === player2);
+
+console.log("- - - - - - - - - - - - - - - - - - - - - - -");
+console.log("");
+
+// directions for play
+console.log("Player 1 is X");
+console.log("Player 2 is O");
+console.log("Player 1 goes first.");
+console.log("");
+
+console.log("Tell me your desired position by column then row.");
+console.log("For example, entering \"1 2\" will make your mark in the 1st column & 2nd row.");
+console.log("");
+console.log("Any player can type the word forfeit to stop game.");
+console.log("");
+
+//Repeat until we have a winner!
+bigBody:
+do {
+  bigCounter++;
+  
+  body:
+  do {
+    counter++;
+    
+    if (counter === 1) {
+      blankBoard();
+      //GAME BEGINS!!
+      currentPlayer = player1;
+      console.log(player1 + ", you're up first!");
+    }
+    
+    //loop to check validity of input
+    while (goodMove !== true && giveUp !== true) {
+      askMove();
+      if (giveUp === true) {
+        break body;
+      }
+      validMove();
+    }
+    
+    // Store the player 1 move in an array
+    var move = currentMove.split(" ");
+    
+    // Change values of array to integer
+    move[0] = parseInt(move[0],10);
+    move[1] = parseInt(move[1],10);
+    
+    // Store the current player's move on gameBoard
+    if (currentPlayer === player1) {
+      gameBoard[move[1]-1][move[0]-1] = "X";
+    }
+    else {
+      gameBoard[move[1]-1][move[0]-1] = "O";
+    }
+    
+    // print game board each turn
+    printBoard();
+
+    // Search for possible winner
+    checkWinner();
+
+    //announce winner if checkWinner is working
+    congrats();
+    
+    // switch players at end of turn or end game if board is full
+    if (currentPlayer === player1 && winner !== true) {
+      console.log(player2 + "\'s turn");
+      currentPlayer = player2;
+      goodMove = false;
+    } else if (winner !== true) {
+      console.log(player1 + "\'s turn");
+      currentPlayer = player1;
+      goodMove = false;
+    }
+    
+   } while (winner !== true && noWinner !== true && giveUp !== true); // end of while loop that runs until winner equals true
+
+    playAgain();
+
+    if (repeatPlay === true) {
+        resetGame();
+    } else {
+      break bigBody;
+    }
+} while (repeatPlay === true);
