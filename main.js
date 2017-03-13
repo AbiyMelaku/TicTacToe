@@ -10,6 +10,7 @@ var rowWinner = false;
 //game variables
 var counter = 0;
 //var currentMove = null;
+var goodMove = false;
 
 //player variables
 var currentPlayer = null;
@@ -20,6 +21,9 @@ var giveUp = false;
 
 /*-- Done initializing variables --*/
 
+//Player's co-ordinates as an array
+var currentMove = [];
+var move = [];
 
 
 /**--THE BOARD --*/
@@ -29,6 +33,7 @@ var gameBoard = [
   [" ", " ", " "],
   [" ", " ", " "]
 ];
+
 
 // function to print game board that is blank
 var blankBoard = function() {
@@ -46,9 +51,6 @@ var blankBoard = function() {
 };
 
 
-//Player's co-ordinates as an array
-var currentMove = [];
-var move = [];
 
 //function to get move of current player
 var askMove = function() {
@@ -116,8 +118,32 @@ var congrats = function() {
     console.log("No winner!  Play again");
     noWinner = true;
   }
-  
 }
+
+// function to check for valid input
+var validMove = function() {
+  if (currentMove.length !== 3){
+    console.log("Invalid input: you must enter the x and y coordinates separated by a space");
+  }
+  else if (currentMove.length === 3){
+    var x = currentMove.substr(0,1);
+    var y = currentMove.substr(2,1);
+
+    if (currentMove.substr(1,1) !== " "){
+      console.log("Invalid input: you must enter the x and y coordinates separated by a space");
+    }
+
+    else if ( ((x < 1) || (x > 3)) || ((y < 1) || (y > 3)) ){
+      console.log("Invalid input: those coordinates are outside the playable area");
+    }
+    else if ( (gameBoard[y-1][x-1] === "X") || (gameBoard[y-1][x-1] === "O") ){
+      console.log("Invalid input: that space is already taken");
+    }
+    else {
+      goodMove = true;
+    }
+  }
+};
 
 
 
