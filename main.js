@@ -37,6 +37,7 @@ var gameBoard = [
 
 // function to print game board that is blank
 var blankBoard = function() {
+  console.log("                                         ");
   console.log("          1   2   3  ");
   console.log("        ~~~~~~~~~~~~~");
   console.log("      1 |   |   |   |");
@@ -50,6 +51,21 @@ var blankBoard = function() {
   console.log("                                         ");
 };
 
+// function to print game board for players to see
+var printBoard = function() {
+  console.log("                                         ");
+  console.log("          1   2   3  ");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("      1 | " + gameBoard[0][0] + " | " + gameBoard[0][1] + " | " + gameBoard[0][2] + " |");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("      2 | " + gameBoard[1][0] + " | " + gameBoard[1][1] + " | " + gameBoard[1][2] + " |");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("      3 | " + gameBoard[2][0] + " | " + gameBoard[2][1] + " | " + gameBoard[2][2] + " |");
+  console.log("        ~~~~~~~~~~~~~");
+  console.log("                                         ");
+  console.log("- - - - - - - - - - - - - - - - - - - - - - -");
+  console.log("                                         ");
+};
 
 
 //function to get move of current player
