@@ -10,11 +10,16 @@ var gameBoard = [
 var currentMove = [];
 var move = [];
 
+//initialize some variables
+var columnWinner = false;
+var diagonalWinner = false;
+
 //function to get move of current player
 var askMove = function() {
   console.log("Enter your move in the this format: # #")
 }
 
+//function to check the winner
 var checkWinner = function() {
   if ((gameBoard[0][0] + gameBoard[1][1] + gameBoard[2][2] === "XXX") ||
       (gameBoard[0][0] + gameBoard[1][1] + gameBoard[2][2] === "OOO") ||
@@ -38,11 +43,36 @@ var checkWinner = function() {
            (gameBoard[0][1] + gameBoard[1][1] + gameBoard[2][1] === "OOO") || 
            (gameBoard[0][2] + gameBoard[1][2] + gameBoard[2][2] === "XXX") || 
            (gameBoard[0][2] + gameBoard[1][2] + gameBoard[2][2] === "OOO")) {
-    colWinner = true;
+    columnWinner = true;
   }
   
-  else if(counter === 9) {
+  else if (counter === 9) {
     noWinner = true;
     winner = true;
   }
+};
+
+var congrats = function() {
+  if (diagonalWinner) {
+    console.log(currentPlayer + " is the winner!");
+    winner = true;
+  }
+  else if (rowWinner) {
+    console.log(currentPlayer + " is the winner!");
+    winner = true;
+  }
+  else if (columnWinner) {
+    console.log(currentPlayer + " is the winner!");
+    winner = true;
+  }
+  else if (counter === 9) {
+    console.log("No winner!  Play again");
+    noWinner = true;
+  }
+  
 }
+
+
+
+//BEGIN GAME
+currentPlayer = player1;
