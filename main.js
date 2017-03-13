@@ -164,7 +164,26 @@ var validMove = function() {
   }
 };
 
-//var playAgain = 
+var playAgain = function() {
+  if (winner !== false || noWinner !== false) {
+    console.log("Would you like to play again? [y or n]");
+    playAgain = prompt().toLowerCase();
+  }
+  if (playAgain === "n" || playAgain === "no") {
+    console.log("");
+    console.log("Deuces.");
+    repeatPlay = false;
+  }
+  else if (playAgain === "y" || playAgain === "yes") {
+    console.log("");
+    console.log("Excellent. Round " + bigCounter + " coming up!");
+    repeatPlay = true;
+  } else {
+    console.log("");
+    console.log("Ciao");
+    repeatPlay = false;
+  }
+};
 
 
 // Prepare the players for this experience
