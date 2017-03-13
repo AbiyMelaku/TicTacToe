@@ -1,4 +1,4 @@
-
+var prompt = require("prompt-sync").prompt;
 
 
 /*-- Initializing some variables --*/
@@ -9,13 +9,14 @@ var rowWinner = false;
 
 //game variables
 var counter = 0;
-var currentMove = null;
+//var currentMove = null;
 
 //player variables
 var currentPlayer = null;
 var player1 = null;
 var player2 = null;
 var winner = false;
+var giveUp = false;
 
 /*-- Done initializing variables --*/
 
@@ -52,6 +53,17 @@ var move = [];
 //function to get move of current player
 var askMove = function() {
   console.log("Enter your move in the this format: # #")
+  currentMove = prompt();
+  if (currentMove === "forfeit"){
+    giveUp = true;
+    console.log("Game ended.");
+
+    if (currentPlayer === player1) {
+      console.log("Player 2 WINS!");
+    } else {
+      console.log("Player 1 WINS!");
+    }
+  }
 }
 
 //function to check the winner
@@ -59,7 +71,7 @@ var checkWinner = function() {
   if ((gameBoard[0][0] + gameBoard[1][1] + gameBoard[2][2] === "XXX") ||
       (gameBoard[0][0] + gameBoard[1][1] + gameBoard[2][2] === "OOO") ||
       ((gameBoard[0][2] + gameBoard[1][1] + gameBoard[2][0] === "XXX") || 
-       (gameBoard[0][2] + gameBoard[1][1] + gameBoard[2][0] === "OOO"))) {
+       (gameBoard[0][2] + gameBoard[1][1] + gameBoard[2][0] === "OOO"))){
     diagonalWinner = true;
   }
   
@@ -68,7 +80,7 @@ var checkWinner = function() {
            (gameBoard[1][0] + gameBoard[1][1] + gameBoard[1][2] === "XXX") || 
            (gameBoard[1][0] + gameBoard[1][1] + gameBoard[1][2] === "OOO") || 
            (gameBoard[2][0] + gameBoard[2][1] + gameBoard[2][2] === "XXX") || 
-           (gameBoard[2][0] + gameBoard[2][1] + gameBoard[2][2] === "OOO")) {
+           (gameBoard[2][0] + gameBoard[2][1] + gameBoard[2][2] === "OOO")){
     rowWinner = true;
   }
   
@@ -77,11 +89,11 @@ var checkWinner = function() {
            (gameBoard[0][1] + gameBoard[1][1] + gameBoard[2][1] === "XXX") || 
            (gameBoard[0][1] + gameBoard[1][1] + gameBoard[2][1] === "OOO") || 
            (gameBoard[0][2] + gameBoard[1][2] + gameBoard[2][2] === "XXX") || 
-           (gameBoard[0][2] + gameBoard[1][2] + gameBoard[2][2] === "OOO")) {
+           (gameBoard[0][2] + gameBoard[1][2] + gameBoard[2][2] === "OOO")){
     columnWinner = true;
   }
   
-  else if (counter === 9) {
+  else if (counter === 9){
     noWinner = true;
     winner = true;
   }
