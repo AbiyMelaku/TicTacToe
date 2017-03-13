@@ -6,13 +6,28 @@ var gameBoard = [
 ];
 
 
+
+/*-- Initializing some variables --*/
+//board variables
+var columnWinner = false;
+var diagonalWinner = false;
+var rowWinner = false;
+
+//game variables
+var counter = 0;
+var currentMove = null;
+
+//player variables
+var currentPlayer = null;
+var player1 = null;
+var player2 = null;
+var winner = false;
+
+/*-- Done initializing variables --*/
+
 //Player's co-ordinates as an array
 var currentMove = [];
 var move = [];
-
-//initialize some variables
-var columnWinner = false;
-var diagonalWinner = false;
 
 //function to get move of current player
 var askMove = function() {
