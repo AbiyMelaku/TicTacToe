@@ -1,5 +1,7 @@
-var prompt = require("prompt-sync").prompt;
+/*TIC-TAC-TOE from the command line*/
 
+//requiring necessary modules
+var prompt = require("prompt-sync").prompt;
 
 /*-- Initializing some variables --*/
 //board variables
@@ -10,18 +12,18 @@ var rowWinner = false;
 //game variables
 var bigCounter = 0;
 var counter = 0;
-//var currentMove = null;
+var currentMove = null;
 var goodMove = false;
 var noWinner = false
 var winner = false;
 var repeatPlay = false;
+var playAgain = null;
 
 //player variables
 var currentPlayer = null;
 var player1 = null;
 var player2 = null;
 var giveUp = false;
-
 /*-- Done initializing variables --*/
 
 //Player's co-ordinates as an array
@@ -29,14 +31,13 @@ var currentMove = [];
 var move = [];
 
 
-/**--THE BOARD --*/
+/**--THE BOARD and functions related to it--*/
 // Game board stored as nested arrays
 var gameBoard = [
   [" ", " ", " "],
   [" ", " ", " "],
   [" ", " ", " "]
 ];
-
 
 // function to print game board that is blank
 var blankBoard = function() {
@@ -69,6 +70,7 @@ var printBoard = function() {
   console.log("- - - - - - - - - - - - - - - - - - - - - - -");
   console.log("                                         ");
 };
+/*-- end of THE BOARD and functions related to it --*/
 
 
 //function to get move of current player
@@ -157,14 +159,13 @@ var validMove = function() {
     }
     else if ( (gameBoard[y-1][x-1] === "X") || (gameBoard[y-1][x-1] === "O") ){
       console.log("Invalid input: that space is already taken");
-    }
-    else {
+    } else {
       goodMove = true;
     }
   }
 };
 
-var playAgain = function() {
+var anotherOne = function() {
   if (winner !== false || noWinner !== false) {
     console.log("Would you like to play again? [y or n]");
     playAgain = prompt().toLowerCase();
@@ -186,7 +187,7 @@ var playAgain = function() {
 };
 
 
-// Prepare the players for this experience
+// begin instructions to players
 console.log("");
 console.log("Let's play Tic-Tac-Toe!!! YEEAAAHAHAHAHA");
 console.log("");
@@ -281,7 +282,7 @@ do {
     
    } while (winner !== true && noWinner !== true && giveUp !== true); // end of while loop that runs until winner equals true
 
-    playAgain();
+    anotherOne();
 
     if (repeatPlay === true) {
         resetGame();
@@ -289,3 +290,5 @@ do {
       break bigBody;
     }
 } while (repeatPlay === true);
+
+console.log('GREAT GAME!  Thanks for playing!  Come again!');
